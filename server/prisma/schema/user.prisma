@@ -1,0 +1,20 @@
+model User {
+    id             String  @id @default(cuid())
+
+    createdAt      DateTime @default(now()) @map("created_at")
+    updatedAt      DateTime @updatedAt @map("updated_at")
+
+    email          String  @unique
+    name           String?
+    password       String
+
+    workInterval   Int?  @default(50) @map("work_interval")
+    breakInterval  Int?  @default(10) @map("break_interval")
+    intervalsCount Int?  @default(7)  @map("intervals_count")
+
+    tasks            Task[]
+    timeBlocks       TimeBlock[]
+    pomodoroSessions PomodoroSession[]
+
+    @@map("user")
+}

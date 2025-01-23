@@ -1,0 +1,16 @@
+model TimeBlock {
+    id         String  @id @default(cuid())
+
+    createdAt  DateTime @default(now()) @map("created_at")
+    updatedAt  DateTime @updatedAt @map("updated_at")
+
+    name       String
+    color      String?
+    duration   Int
+    order      Int @default(1)
+
+    user       User @relation(fields: [userId], references: [id])
+    userId     String @map("user_id")
+
+    @@map("time_block")
+}
