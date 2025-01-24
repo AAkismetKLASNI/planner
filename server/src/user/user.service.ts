@@ -26,6 +26,7 @@ export class UserService {
     const profile = await this.getById(id);
 
     const totalTasks = profile.tasks.length;
+    //fix it later
     const completedTasks = await this.prisma.task.findMany({
       where: { userId: id, isCompleted: true },
     });
@@ -33,9 +34,11 @@ export class UserService {
     const todayStart = startOfDay(new Date());
     const weekStart = startOfDay(subDays(new Date(), 7));
 
+    //fix it later
     const todayTasks = await this.prisma.task.findMany({
       where: { id, createdAt: { gte: todayStart.toISOString() } },
     });
+    //fix it later
     const weekTasks = await this.prisma.task.findMany({
       where: { id, createdAt: { gte: weekStart.toISOString() } },
     });
