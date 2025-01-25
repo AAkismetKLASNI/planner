@@ -1,6 +1,6 @@
 import { IBase } from './root.types';
 
-export interface ITask extends IBase {
+export interface ITaskResponse extends IBase {
   name: string;
   isCompleted: boolean;
   priority?: Priority;
@@ -12,4 +12,6 @@ enum Priority {
   high = 'high',
 }
 
-export type TypeTaskFormState = Partial<Omit<ITask, 'id' | 'updatedAt'>>;
+export type TypeTaskFormState = Partial<
+  Omit<ITaskResponse, 'id' | 'updatedAt'>
+>;

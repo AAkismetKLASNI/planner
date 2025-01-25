@@ -1,11 +1,11 @@
 import { IBase } from './root.types';
 
-export interface IPomodoroSession extends IBase {
+export interface IPomodoroSessionResponse extends IBase {
   isCompleted?: boolean;
   rounds?: IPomodoroRound[];
 }
 
-export interface IPomodoroRound extends IBase {
+export interface IPomodoroRoundResponse extends IBase {
   isCompleted?: boolean;
   totalSeconds: number;
 }
