@@ -50,9 +50,9 @@ export class UserService {
       user,
       statistics: [
         { label: 'Total', value: totalTasks },
-        { label: 'Completed tasks', value: completedTasks },
-        { label: 'Today tasks', value: todayTasks },
-        { label: 'Week tasks', value: weekTasks },
+        { label: 'Completed tasks', value: completedTasks.length },
+        { label: 'Today tasks', value: todayTasks.length },
+        { label: 'Week tasks', value: weekTasks.length },
       ],
     };
   }

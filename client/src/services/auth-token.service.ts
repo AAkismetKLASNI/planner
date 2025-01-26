@@ -1,6 +1,6 @@
 import Cookies from 'js-cookie';
 
-enum EnumTokens {
+export enum EnumTokens {
   ACCESS_TOKEN = 'accessToken',
   REFRESH_TOKEN = 'refreshToken',
 }

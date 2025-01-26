@@ -13,6 +13,7 @@ class AuthService {
       if (response.data.accessToken) saveAccessToken(response.data.accessToken);
 
       return response;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       throw error.response.data.message;
     }
