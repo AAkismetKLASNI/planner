@@ -56,15 +56,15 @@ export default function Auth() {
         </div>
         <Field
           id="email"
-          label="email"
-          placeholder="email"
+          label="Email"
+          placeholder="Enter email"
           extra="my-4"
           {...register('email')}
         />
         <Field
           id="password"
-          label="password"
-          placeholder="password"
+          label="Password"
+          placeholder="Enter password"
           type="password"
           extra="mb-6"
           {...register('password')}

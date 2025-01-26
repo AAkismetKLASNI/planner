@@ -3,10 +3,8 @@
 import { LogoutButton } from './logout.button';
 import { MENU } from './menu.data';
 import { MenuItem } from './menu.item';
-import { SquareChartGantt } from 'lucide-react';
+import Image from 'next/image';
 import Link from 'next/link';
-import { COLORS } from '@/constants/color.constants';
-import { SITE_NAME } from '@/constants/seo.constants';
 
 export function Sidebar() {
   return (
@@ -16,7 +14,7 @@ export function Sidebar() {
           href="/"
           className="flex items-center gap-2.5 p-layout border-b border-r-border"
         >
-          <SquareChartGantt size={38} color={COLORS.primary} />
+          <Image src="/logo.svg" alt="logo" width="40" height="40" />
           <span className="text-2xl font-bold relative">Reflection</span>
         </Link>
         <div className="p-3 relative">
@@ -28,8 +26,8 @@ export function Sidebar() {
           </ul>
         </div>
       </div>
-      <footer className="text-center p-layout opacity-50">
-        2025 &copy; kismetkismet
+      <footer className="text-center p-layout opacity-50 text-balance">
+        2025 &copy; kismetkismet (pet project)
       </footer>
     </aside>
   );

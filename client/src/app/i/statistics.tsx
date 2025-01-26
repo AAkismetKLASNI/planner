@@ -12,7 +12,7 @@ export function Statistics() {
             return (
               <div
                 key={id}
-                className="bg-border/5 text-center rounded p-layout animate-pulse"
+                className="bg-border/5 text-center rounded-lg p-layout animate-pulse"
               >
                 <div className="h-6 bg-border/10 rounded mb-6"></div>
                 <div className="h-8 bg-border/10 rounded"></div>
@@ -22,7 +22,7 @@ export function Statistics() {
         : data?.statistics.map(({ label, value }) => (
             <div
               key={label}
-              className="bg-border/5 text-center rounded p-layout hover:-translate-y-3 transition-transform"
+              className="bg-border/5 text-center rounded-lg p-layout hover:-translate-y-3 transition-transform"
             >
               <div className="text-xl">{label}</div>
               <div className="text-3xl">{value}</div>
