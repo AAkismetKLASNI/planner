@@ -13,6 +13,7 @@
     "@dnd-kit/sortable": "^10.0.0",
     "@dnd-kit/utilities": "^3.2.2",
     "@hello-pangea/dnd": "^17.0.0",
+    "@hookform/resolvers": "^3.10.0",
     "@tanstack/react-query": "^5.64.2",
     "@tanstack/react-query-devtools": "^5.64.2",
     "@trivago/prettier-plugin-sort-imports": "^5.2.1",
@@ -33,7 +34,8 @@
     "sass": "^1.83.4",
     "scss": "^0.2.4",
     "sonner": "^1.7.2",
-    "tailwind-variants": "^0.3.1"
+    "tailwind-variants": "^0.3.1",
+    "yup": "^1.6.1"
   },
   "devDependencies": {
     "typescript": "^5",

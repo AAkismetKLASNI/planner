@@ -4,14 +4,18 @@ import { axiosClassic } from '@/api/interceptors';
 
 class AuthService {
   async main(type: 'login' | 'register', data: IAuthForm) {
-    const response = await axiosClassic.post<IAuthResponse>(
-      `/auth/${type}`,
-      data,
-    );
+    try {
+      const response = await axiosClassic.post<IAuthResponse>(
+        `/auth/${type}`,
+        data,
+      );
 
-    if (response.data.accessToken) saveAccessToken(response.data.accessToken);
+      if (response.data.accessToken) saveAccessToken(response.data.accessToken);
 
-    return response;
+      return response;
+    } catch (error: any) {
+      throw error.response.data.message;
+    }
   }
 
   async getNewTokens() {
