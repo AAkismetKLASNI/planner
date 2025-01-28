@@ -1,8 +1,8 @@
-import { IBase } from './root.types';
+import type { IBase } from './root.types';
 
 export interface IPomodoroSessionResponse extends IBase {
   isCompleted?: boolean;
-  rounds?: IPomodoroRound[];
+  rounds?: IPomodoroRoundResponse[];
 }
 
 export interface IPomodoroRoundResponse extends IBase {
@@ -11,9 +11,9 @@ export interface IPomodoroRoundResponse extends IBase {
 }
 
 export type TypePomodoroSessionState = Partial<
-  Omit<IPomodoroSession, 'id' | 'createdAt' | 'updatedAt'>
+  Omit<IPomodoroSessionResponse, 'id' | 'createdAt' | 'updatedAt'>
 >;
 
 export type TypePomodoroRoundState = Partial<
-  Omit<IPomodoroSession, 'id' | 'createdAt' | 'updatedAt'>
+  Omit<IPomodoroSessionResponse, 'id' | 'createdAt' | 'updatedAt'>
 >;

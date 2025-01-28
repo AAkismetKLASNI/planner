@@ -1,3 +1,5 @@
+'use client';
+
 interface IHeading {
   title: string;
 }

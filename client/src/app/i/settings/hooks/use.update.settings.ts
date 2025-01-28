@@ -5,7 +5,7 @@ import { TypeUserForm } from '@/types/auth.types';
 export const useUpdateSetting = () => {
   const queryClient = useQueryClient();
 
-  const { mutate, isPending } = useMutation({
+  const { mutate: updateSettings, isPending } = useMutation({
     mutationKey: ['update user'],
     mutationFn: (data: TypeUserForm) => userService.updateProfile(data),
     onSuccess: async () => {
@@ -15,5 +15,5 @@ export const useUpdateSetting = () => {
     },
   });
 
-  return { mutate, isPending };
+  return { updateSettings, isPending };
 };

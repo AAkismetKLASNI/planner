@@ -8,7 +8,7 @@ import { useRouter } from 'next/navigation';
 export function LogoutButton() {
   const { push } = useRouter();
 
-  const { mutate } = useMutation({
+  const { mutate: onLogOut } = useMutation({
     mutationKey: ['logout'],
     mutationFn: () => authService.logout(),
     onSuccess: () => push('/auth'),
@@ -18,7 +18,7 @@ export function LogoutButton() {
     <div className="absolute top-2 right-2">
       <button
         className="opacity-20 hover:opacity-100 transition-opacity"
-        onClick={() => mutate()}
+        onClick={() => onLogOut()}
       >
         <LogOut size={20} />
       </button>

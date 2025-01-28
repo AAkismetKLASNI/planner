@@ -17,6 +17,6 @@ export class TaskDto {
 
   @IsString()
   @IsOptional()
-  @Transform((value) => ('' + value).toLowerCase)
+  @Transform((value) => ('' + value).toLowerCase())
   createdAt?: string;
 }

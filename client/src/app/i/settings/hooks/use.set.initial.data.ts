@@ -1,4 +1,4 @@
-import { useGetProfile } from './use.get.profile';
+import { useGetProfile } from '../../../../hooks/use.get.profile';
 import { useEffect } from 'react';
 import type { UseFormReset } from 'react-hook-form';
 import type { TypeUserForm } from '@/types/auth.types';

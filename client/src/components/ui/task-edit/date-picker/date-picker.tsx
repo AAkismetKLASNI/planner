@@ -6,8 +6,8 @@ import { X } from 'lucide-react';
 import { useState } from 'react';
 import { DayPicker, type SelectSingleEventHandler } from 'react-day-picker';
 import 'react-day-picker/dist/style.css';
-import { useOutside } from '@/hooks/useOutside';
-import './DatePicker.scss';
+import { useOutside } from '@/hooks/use.outside';
+import './date-picker.scss';
 
 dayjs.extend(LocalizedFormat);
 

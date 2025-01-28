@@ -1,12 +1,12 @@
 'use client';
 
+import { useSetInitialData } from './hooks/use.set.initial.data';
+import { useUpdateSetting } from './hooks/use.update.settings';
 import { useForm } from 'react-hook-form';
 import { Button } from '@/components/ui/buttons/button';
 import { Error } from '@/components/ui/error';
 import { Field } from '@/components/ui/fields/field';
 import { TypeUserForm } from '@/types/auth.types';
-import { useSetInitialData } from '@/hooks/use.set.initial.data';
-import { useUpdateSetting } from '@/hooks/use.update.settings';
 
 export function Settings() {
   const {
@@ -25,14 +25,12 @@ export function Settings() {
     errors.workInterval?.message;
 
   useSetInitialData(reset);
-  const { mutate, isPending } = useUpdateSetting();
+  const { updateSettings, isPending } = useUpdateSetting();
 
   const onSubmit = (data: TypeUserForm) => {
     const { password, ...rest } = data;
 
-    console.log('update data!', password);
-
-    mutate({ ...rest, password: password || undefined });
+    updateSettings({ ...rest, password: password || undefined });
   };
 
   return (
