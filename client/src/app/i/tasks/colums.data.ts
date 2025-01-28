@@ -23,7 +23,7 @@ export const FILTERS: Record<string, Dayjs> = {
   later: dayjs().add(2, 'week').startOf('day'),
 };
 
-export const COLUMS = [
+export const COLUMNS = [
   { label: 'Today', value: EnumColums.TODAY },
   { label: 'Tomorrow', value: EnumColums.TOMORROW },
   { label: 'On this week', value: EnumColums.ON_THIS_WEEK },

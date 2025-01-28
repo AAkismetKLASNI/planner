@@ -1,6 +1,6 @@
 'use client';
 
-import { COLUMS } from '../colums.data';
+import { COLUMNS } from '../colums.data';
 import { useGetTasks } from '../hooks/use.get.tasks';
 import { useTaskDnd } from '../hooks/use.task.dnd';
 import { ListRowParent } from './list.row.parent';
@@ -19,11 +19,10 @@ export function ListView() {
           <div>Task name</div>
           <div>Due date</div>
           <div>Priority</div>
-          <div></div>
         </div>
 
         <div className={styles.parentsWrapper}>
-          {COLUMS.map(({ label, value }) => (
+          {COLUMNS.map(({ label, value }) => (
             <ListRowParent
               key={label}
               items={tasks}
