@@ -15,5 +15,5 @@ export type TypePomodoroSessionState = Partial<
 >;
 
 export type TypePomodoroRoundState = Partial<
-  Omit<IPomodoroSessionResponse, 'id' | 'createdAt' | 'updatedAt'>
+  Omit<IPomodoroRoundResponse, 'id' | 'createdAt' | 'updatedAt'>
 >;
