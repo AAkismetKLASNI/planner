@@ -2,10 +2,14 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { PrismaService } from 'src/prisma.service';
 import { PomodoroSessionDto } from './dto/pomodoro.session.dto';
 import { PomodoroRoundDto } from './dto/pomodoro.round.dto';
+import { UserService } from 'src/user/user.service';
 
 @Injectable()
 export class PomodoroService {
-  constructor(private prisma: PrismaService) {}
+  constructor(
+    private prisma: PrismaService,
+    private userService: UserService,
+  ) {}
 
   async getTodaySession(userId: string) {
     const today = new Date().toISOString().split('T')[0];
@@ -21,11 +25,7 @@ export class PomodoroService {
 
     if (todaySession) return todaySession;
 
-    //fix it later
-    const user = await this.prisma.user.findUnique({
-      where: { id: userId },
-      select: { intervalsCount: true },
-    });
+    const user = await this.userService.getUserIntervalsCountById(userId);
 
     if (!user) throw new NotFoundException('User not found');
 

@@ -25,11 +25,18 @@ export class UserService {
     });
   }
 
+  getUserIntervalsCountById(id: string) {
+    return this.prisma.user.findUnique({
+      where: { id },
+      select: { intervalsCount: true },
+    });
+  }
+
   async getProfile(id: string) {
     const profile = await this.getById(id);
 
     const totalTasks = profile.tasks.length;
-    //fix it later
+
     const completedTasks = await this.taskService.getCompletedTasks(id);
 
     const todayTasks = await this.taskService.getTodayTasks(id);

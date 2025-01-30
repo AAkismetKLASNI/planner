@@ -27,7 +27,7 @@ export function Sidebar() {
         </div>
       </div>
       <footer className="text-center p-layout opacity-50 text-balance">
-        2025 &copy; kismetkismet (pet project)
+        2025 &copy; kismetkismet
       </footer>
     </aside>
   );

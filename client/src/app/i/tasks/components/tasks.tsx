@@ -14,7 +14,6 @@ interface ITask {
 }
 
 export function Tasks({ items, value, setItems, view }: ITask) {
-  console.log('tasks', items);
   return (
     <>
       {filterTasks(items, value)?.map((item, index) => (
