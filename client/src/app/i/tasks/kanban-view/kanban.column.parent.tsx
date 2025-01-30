@@ -1,19 +1,18 @@
 'use client';
 
-import { EnumColums, FILTERS } from '../colums.data';
-import { filterTasks } from '../filter.tasks';
-import { KanbanAddCardInput } from './kanban.add.card.input';
-import { KanbanCard } from './kanban.card';
-import { Draggable, Droppable } from '@hello-pangea/dnd';
+import { FILTERS } from '../colums.data';
+import { AddInput } from '../components/add.input';
+import { Tasks } from '../components/tasks';
+import { Droppable } from '@hello-pangea/dnd';
 import type { Dispatch, SetStateAction } from 'react';
 import type { ITaskResponse } from '@/types/task.types';
-import styles from './kanban.view.module.scss';
+import styles from '../styles/kanban.view.module.scss';
 
-interface IKanbanRowParent {
+interface IKanbanColumnParent {
   value: string;
   label: string;
-  items: ITaskResponse[];
-  setItems: Dispatch<SetStateAction<ITaskResponse[]>>;
+  items: ITaskResponse[] | undefined;
+  setItems: Dispatch<SetStateAction<ITaskResponse[] | undefined>>;
 }
 
 export function KanbanColumnParent({
@@ -21,7 +20,7 @@ export function KanbanColumnParent({
   label,
   setItems,
   value,
-}: IKanbanRowParent) {
+}: IKanbanColumnParent) {
   return (
     <Droppable droppableId={value}>
       {(provided) => (
@@ -29,31 +28,22 @@ export function KanbanColumnParent({
           <div className={styles.column}>
             <div className={styles.columnHeading}>{label}</div>
 
-            {filterTasks(items, value)?.map((item, index) => (
-              <Draggable key={item.id} draggableId={item.id} index={index}>
-                {(provided) => (
-                  <div
-                    ref={provided.innerRef}
-                    {...provided.draggableProps}
-                    {...provided.dragHandleProps}
-                  >
-                    <KanbanCard key={item.id} item={item} setItems={setItems} />
-                  </div>
-                )}
-              </Draggable>
-            ))}
+            <Tasks
+              items={items}
+              setItems={setItems}
+              value={value}
+              view="kanban"
+            />
 
             {provided.placeholder}
 
-            {value !== EnumColums.COMPLETED &&
-              !items?.some((item) => item.id === 'mock') && (
-                <KanbanAddCardInput
-                  setItems={setItems}
-                  filterDate={
-                    FILTERS[value] ? FILTERS[value].format() : undefined
-                  }
-                />
-              )}
+            <AddInput
+              items={items}
+              setItems={setItems}
+              value={value}
+              className="mt-5 pb-5"
+              filterDate={FILTERS[value] ? FILTERS[value].format() : undefined}
+            />
           </div>
         </div>
       )}

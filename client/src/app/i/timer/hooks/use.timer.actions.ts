@@ -21,8 +21,6 @@ export function useTimerActions({
     setIsRunning(false);
     if (!activeRound?.id) return;
 
-    console.log(workInterval);
-
     updateRound({
       id: activeRound.id,
       data: {

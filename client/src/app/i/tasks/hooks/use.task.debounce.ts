@@ -32,13 +32,16 @@ export const useTaskDebounce = ({ watch, itemId }: IUseTaskDebounce) => {
 
   useEffect(() => {
     const { unsubscribe } = watch((formData) => {
-      if (itemId !== 'mock') {
+      const name = formData.name?.trim();
+
+      if (itemId !== 'mock' && name) {
         debounceUpdateTask({
           ...formData,
+          name,
           priority: formData.priority || undefined,
         });
-      } else {
-        debounceCreateTask(formData);
+      } else if (name) {
+        debounceCreateTask({ ...formData, name });
       }
     });
 

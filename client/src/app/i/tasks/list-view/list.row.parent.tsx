@@ -1,19 +1,18 @@
 'use client';
 
-import { EnumColums, FILTERS } from '../colums.data';
-import { filterTasks } from '../filter.tasks';
-import { ListAddRowInput } from './list.add.row.input';
-import { ListRow } from './list.row';
-import { Draggable, Droppable } from '@hello-pangea/dnd';
+import { FILTERS } from '../colums.data';
+import { AddInput } from '../components/add.input';
+import { Tasks } from '../components/tasks';
+import { Droppable } from '@hello-pangea/dnd';
 import type { Dispatch, SetStateAction } from 'react';
 import type { ITaskResponse } from '@/types/task.types';
-import styles from './list.view.module.scss';
+import styles from '../styles/list.view.module.scss';
 
 interface IListRowParent {
   value: string;
   label: string;
-  items: ITaskResponse[];
-  setItems: Dispatch<SetStateAction<ITaskResponse[]>>;
+  items: ITaskResponse[] | undefined;
+  setItems: Dispatch<SetStateAction<ITaskResponse[] | undefined>>;
 }
 
 export function ListRowParent({
@@ -30,34 +29,17 @@ export function ListRowParent({
             <div className="w-full">{label}</div>
           </div>
 
-          {items &&
-            filterTasks(items, value).map((item, index) => {
-              return (
-                <Draggable key={item.id} draggableId={item.id} index={index}>
-                  {(provided) => (
-                    <div
-                      ref={provided.innerRef}
-                      {...provided.draggableProps}
-                      {...provided.dragHandleProps}
-                    >
-                      <ListRow item={item} setItems={setItems} />
-                    </div>
-                  )}
-                </Draggable>
-              );
-            })}
+          <Tasks items={items} value={value} setItems={setItems} view="list" />
 
           {provided.placeholder}
 
-          {value !== EnumColums.COMPLETED &&
-            !items?.some((item) => item.id === 'mock') && (
-              <ListAddRowInput
-                setItems={setItems}
-                filterDate={
-                  FILTERS[value] ? FILTERS[value].format() : undefined
-                }
-              />
-            )}
+          <AddInput
+            items={items}
+            setItems={setItems}
+            value={value}
+            className="py-2 px-4"
+            filterDate={FILTERS[value] ? FILTERS[value].format() : undefined}
+          />
         </div>
       )}
     </Droppable>

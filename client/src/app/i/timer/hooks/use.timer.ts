@@ -30,7 +30,6 @@ export function useTimer(): ITimerState {
 
   useEffect(() => {
     if (secondsLeft > 0) return;
-    console.log('1');
     // переключение режима и установка нового времени одной операцией
     setIsBreakTime(!isBreakTime);
     setSecondsLeft((isBreakTime ? workInterval : breakInterval) * 60);

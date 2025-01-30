@@ -1,4 +1,4 @@
-import { EnumColums, FILTERS } from './colums.data';
+import { EnumColums, FILTERS } from '../colums.data';
 import dayjs from 'dayjs';
 import isSameOrAfter from 'dayjs/plugin/isSameOrAfter';
 import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
@@ -12,6 +12,12 @@ export const filterTasks = (
   value: string,
 ) => {
   switch (value) {
+    case EnumColums.OVERDUE:
+      return tasks?.filter((task) => {
+        return (
+          dayjs(task.createdAt).isBefore(FILTERS.today) && !task.isCompleted
+        );
+      });
     case EnumColums.TODAY:
       return tasks?.filter(
         (task) =>

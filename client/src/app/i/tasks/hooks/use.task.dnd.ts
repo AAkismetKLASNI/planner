@@ -18,6 +18,12 @@ export const useTaskDnd = () => {
       return;
     }
 
+    if (destinationColumnId === EnumColums.OVERDUE) {
+      updateTask({ id: result.draggableId, data: { isCompleted: false } });
+
+      return;
+    }
+
     const newCreatedAt = FILTERS[destinationColumnId].format();
 
     updateTask({

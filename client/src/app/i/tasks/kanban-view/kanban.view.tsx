@@ -5,7 +5,7 @@ import { useGetTasks } from '../hooks/use.get.tasks';
 import { useTaskDnd } from '../hooks/use.task.dnd';
 import { KanbanColumnParent } from './kanban.column.parent';
 import { DragDropContext } from '@hello-pangea/dnd';
-import styles from './kanban.view.module.scss';
+import styles from '../styles/kanban.view.module.scss';
 
 export function KanbanView() {
   const { tasks, setTasks } = useGetTasks();

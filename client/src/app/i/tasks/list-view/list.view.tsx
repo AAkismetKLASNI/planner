@@ -5,7 +5,7 @@ import { useGetTasks } from '../hooks/use.get.tasks';
 import { useTaskDnd } from '../hooks/use.task.dnd';
 import { ListRowParent } from './list.row.parent';
 import { DragDropContext } from '@hello-pangea/dnd';
-import styles from './list.view.module.scss';
+import styles from '../styles/list.view.module.scss';
 
 export function ListView() {
   const { tasks, setTasks } = useGetTasks();

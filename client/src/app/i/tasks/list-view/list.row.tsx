@@ -4,23 +4,23 @@ import { useDeleteTask } from '../hooks/use.delete.task';
 import { useTaskDebounce } from '../hooks/use.task.debounce';
 import cn from 'clsx';
 import { GripVertical, Trash } from 'lucide-react';
-import type { Dispatch, SetStateAction } from 'react';
+import { type Dispatch, type SetStateAction, useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import Checkbox from '@/components/ui/checkbox';
 import { TransparentField } from '@/components/ui/fields/transperent';
 import { Loader } from '@/components/ui/loader/loader';
 import { DatePicker } from '@/components/ui/task-edit/date-picker/date-picker';
 import { SingleSelect } from '@/components/ui/task-edit/single-select';
-import { ITaskResponse, TypeTaskFormState } from '@/types/task.types';
-import styles from './list.view.module.scss';
+import type { ITaskResponse, TypeTaskFormState } from '@/types/task.types';
+import styles from '../styles/list.view.module.scss';
 
 interface IListRow {
   item: ITaskResponse;
-  setItems: Dispatch<SetStateAction<ITaskResponse[]>>;
+  setItems: Dispatch<SetStateAction<ITaskResponse[] | undefined>>;
 }
 
 export function ListRow({ item, setItems }: IListRow) {
-  const { register, watch, control } = useForm<TypeTaskFormState>({
+  const { register, watch, control, setFocus } = useForm<TypeTaskFormState>({
     defaultValues: {
       name: item.name,
       createdAt: item.createdAt,
@@ -31,6 +31,10 @@ export function ListRow({ item, setItems }: IListRow) {
   useTaskDebounce({ watch, itemId: item.id });
 
   const { deleteTask, isDeletePending } = useDeleteTask();
+
+  useEffect(() => {
+    setFocus('name');
+  }, [setFocus]);
 
   return (
     <div

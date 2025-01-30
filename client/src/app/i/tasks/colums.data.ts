@@ -7,6 +7,7 @@ dayjs.extend(isoWeek);
 dayjs.extend(weekOfYear);
 
 export enum EnumColums {
+  'OVERDUE' = 'overdue',
   'TODAY' = 'today',
   'TOMORROW' = 'tomorrow',
   'ON_THIS_WEEK' = 'on-this-week',
@@ -16,6 +17,7 @@ export enum EnumColums {
 }
 
 export const FILTERS: Record<string, Dayjs> = {
+  overdue: dayjs().subtract(1, 'day').endOf('day'),
   today: dayjs().startOf('day'),
   tomorrow: dayjs().add(1, 'day').startOf('day'),
   'on-this-week': dayjs().endOf('isoWeek'),
@@ -24,6 +26,7 @@ export const FILTERS: Record<string, Dayjs> = {
 };
 
 export const COLUMNS = [
+  { label: 'Overdue', value: EnumColums.OVERDUE },
   { label: 'Today', value: EnumColums.TODAY },
   { label: 'Tomorrow', value: EnumColums.TOMORROW },
   { label: 'On this week', value: EnumColums.ON_THIS_WEEK },

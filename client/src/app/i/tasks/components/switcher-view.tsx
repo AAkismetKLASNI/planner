@@ -1,6 +1,6 @@
 'use client';
 
-import type { TypeView } from './tasks.view';
+import type { TypeView } from '../tasks.view';
 import cn from 'clsx';
 import { Kanban, ListTodo } from 'lucide-react';
 import { Dispatch, SetStateAction } from 'react';

@@ -28,10 +28,6 @@
       }
     }
 
-    .addRow {
-      @apply py-2 px-4 border-t border-border;
-    }
-
     .row {
       @apply font-normal grid grid-cols-[1.4fr_.4fr_.4fr_.1fr] relative;
 

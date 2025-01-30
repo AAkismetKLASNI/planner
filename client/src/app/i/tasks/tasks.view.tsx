@@ -1,8 +1,8 @@
 'use client';
 
+import { SwitcherView } from './components/switcher-view';
 import { KanbanView } from './kanban-view/kanban.view';
 import { ListView } from './list-view/list.view';
-import { SwitcherView } from './switcher-view';
 import { Loader } from '@/components/ui/loader/loader';
 import { useLocalStorage } from '@/hooks/use.local.storage';
 
