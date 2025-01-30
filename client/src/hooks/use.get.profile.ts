@@ -7,5 +7,7 @@ export const useGetProfile = () => {
     queryFn: () => userService.getProfile(),
   });
 
+  console.log('123', data?.statistics);
+
   return { data, isLoading, isSuccess };
 };

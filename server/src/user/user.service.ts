@@ -3,11 +3,14 @@ import { hash } from 'argon2';
 import { AuthDto } from 'src/auth/dto/auth.dto';
 import { PrismaService } from 'src/prisma.service';
 import { UserDto } from './dto/user.dto';
-import { startOfDay, subDays } from 'date-fns';
+import { TaskService } from 'src/task/task.service';
 
 @Injectable()
 export class UserService {
-  constructor(private prisma: PrismaService) {}
+  constructor(
+    private prisma: PrismaService,
+    private taskService: TaskService,
+  ) {}
 
   getById(id: string) {
     return this.prisma.user.findUnique({
@@ -27,21 +30,11 @@ export class UserService {
 
     const totalTasks = profile.tasks.length;
     //fix it later
-    const completedTasks = await this.prisma.task.findMany({
-      where: { userId: id, isCompleted: true },
-    });
+    const completedTasks = await this.taskService.getCompletedTasks(id);
 
-    const todayStart = startOfDay(new Date());
-    const weekStart = startOfDay(subDays(new Date(), 7));
+    const todayTasks = await this.taskService.getTodayTasks(id);
 
-    //fix it later
-    const todayTasks = await this.prisma.task.findMany({
-      where: { id, createdAt: { gte: todayStart.toISOString() } },
-    });
-    //fix it later
-    const weekTasks = await this.prisma.task.findMany({
-      where: { id, createdAt: { gte: weekStart.toISOString() } },
-    });
+    const weekTasks = await this.taskService.getWeekTasks(id);
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { password, ...user } = profile;

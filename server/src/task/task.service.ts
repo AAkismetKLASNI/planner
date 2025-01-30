@@ -1,6 +1,13 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma.service';
 import { TaskDto } from './dto/task.dto';
+import {
+  startOfDay,
+  endOfDay,
+  subDays,
+  endOfWeek,
+  startOfWeek,
+} from 'date-fns';
 
 @Injectable()
 export class TaskService {
@@ -26,6 +33,44 @@ export class TaskService {
   delete(taskId: string) {
     return this.prisma.task.delete({
       where: { id: taskId },
+    });
+  }
+
+  getCompletedTasks(userId: string) {
+    return this.prisma.task.findMany({
+      where: { userId, isCompleted: true },
+    });
+  }
+
+  getTodayTasks(userId: string) {
+    const todayStart = startOfDay(new Date());
+    const todayEnd = endOfDay(new Date());
+
+    return this.prisma.task.findMany({
+      where: {
+        userId,
+        createdAt: {
+          gte: todayStart.toISOString(),
+          lte: todayEnd.toISOString(),
+        },
+        isCompleted: false,
+      },
+    });
+  }
+
+  getWeekTasks(userId: string) {
+    const weekStart = startOfWeek(new Date());
+    const weekEnd = endOfWeek(new Date());
+
+    return this.prisma.task.findMany({
+      where: {
+        userId,
+        createdAt: {
+          gte: weekStart.toISOString(),
+          lte: weekEnd.toISOString(),
+        },
+        isCompleted: false,
+      },
     });
   }
 }
