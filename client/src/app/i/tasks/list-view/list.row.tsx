@@ -1,53 +1,44 @@
 'use client';
 
+import { EnumColums } from '../colums.data';
 import { useDeleteTask } from '../hooks/use.delete.task';
-import { useTaskDebounce } from '../hooks/use.task.debounce';
+import { useFormItem } from '../hooks/use.form.item';
 import cn from 'clsx';
 import { GripVertical, Trash } from 'lucide-react';
-import { type Dispatch, type SetStateAction, useEffect } from 'react';
-import { Controller, useForm } from 'react-hook-form';
+import { type Dispatch, type SetStateAction } from 'react';
+import { Controller } from 'react-hook-form';
 import Checkbox from '@/components/ui/checkbox';
 import { TransparentField } from '@/components/ui/fields/transperent';
 import { Loader } from '@/components/ui/loader/loader';
 import { DatePicker } from '@/components/ui/task-edit/date-picker/date-picker';
 import { SingleSelect } from '@/components/ui/task-edit/single-select';
-import type { ITaskResponse, TypeTaskFormState } from '@/types/task.types';
-import styles from '../styles/list.view.module.scss';
+import type { ITaskResponse } from '@/types/task.types';
+import stylesList from '../styles/list.view.module.scss';
+import stylesItem from '../styles/task.view.module.scss';
 
 interface IListRow {
   item: ITaskResponse;
   setItems: Dispatch<SetStateAction<ITaskResponse[] | undefined>>;
+  value: string;
 }
 
-export function ListRow({ item, setItems }: IListRow) {
-  const { register, watch, control, setFocus } = useForm<TypeTaskFormState>({
-    defaultValues: {
-      name: item.name,
-      createdAt: item.createdAt,
-      isCompleted: item.isCompleted,
-      priority: item.priority,
-    },
-  });
-  useTaskDebounce({ watch, itemId: item.id });
-
+export function ListRow({ item, setItems, value }: IListRow) {
+  const { control, register } = useFormItem(item);
   const { deleteTask, isDeletePending } = useDeleteTask();
-
-  useEffect(() => {
-    setFocus('name');
-  }, [setFocus]);
 
   return (
     <div
       className={cn(
-        styles.row,
-        watch('isCompleted') ? styles.completed : '',
+        stylesList.row,
+        value === EnumColums.COMPLETED ? stylesItem.completed : '',
+        value === EnumColums.OVERDUE ? stylesItem.overdue : '',
         'animation-opacity',
       )}
     >
       <div>
         <span className="inline-flex items-center gap-2.5 w-full">
           <button aria-describedby="todo-item">
-            <GripVertical className={styles.grip} />
+            <GripVertical className={stylesList.grip} />
           </button>
 
           <Controller

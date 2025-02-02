@@ -1,7 +1,6 @@
 import { KanbanCard } from '../kanban-view/kanban.card';
 import { ListRow } from '../list-view/list.row';
 import { TypeView } from '../tasks.view';
-import { filterTasks } from '../utils/filter.tasks';
 import { Draggable } from '@hello-pangea/dnd';
 import { Dispatch, SetStateAction } from 'react';
 import type { ITaskResponse } from '@/types/task.types';
@@ -16,7 +15,7 @@ interface ITask {
 export function Tasks({ items, value, setItems, view }: ITask) {
   return (
     <>
-      {filterTasks(items, value)?.map((item, index) => (
+      {items?.map((item, index) => (
         <Draggable key={item.id} draggableId={item.id} index={index}>
           {(provided) => (
             <div
@@ -25,9 +24,9 @@ export function Tasks({ items, value, setItems, view }: ITask) {
               {...provided.dragHandleProps}
             >
               {view === 'list' ? (
-                <ListRow item={item} setItems={setItems} />
+                <ListRow item={item} setItems={setItems} value={value} />
               ) : (
-                <KanbanCard item={item} setItems={setItems} />
+                <KanbanCard item={item} setItems={setItems} value={value} />
               )}
             </div>
           )}

@@ -1,54 +1,43 @@
 'use client';
 
+import { EnumColums } from '../colums.data';
 import { useDeleteTask } from '../hooks/use.delete.task';
-import { useTaskDebounce } from '../hooks/use.task.debounce';
+import { useFormItem } from '../hooks/use.form.item';
 import cn from 'clsx';
 import { GripVertical, Trash } from 'lucide-react';
-import { type Dispatch, type SetStateAction, useEffect } from 'react';
-import { Controller, useForm } from 'react-hook-form';
+import { type Dispatch, type SetStateAction } from 'react';
+import { Controller } from 'react-hook-form';
 import Checkbox from '@/components/ui/checkbox';
 import { TransparentField } from '@/components/ui/fields/transperent';
 import { Loader } from '@/components/ui/loader/loader';
 import { DatePicker } from '@/components/ui/task-edit/date-picker/date-picker';
 import { SingleSelect } from '@/components/ui/task-edit/single-select';
-import { ITaskResponse, TypeTaskFormState } from '@/types/task.types';
-import styles from '../styles/kanban.view.module.scss';
+import type { ITaskResponse } from '@/types/task.types';
+import stylesKanban from '../styles/kanban.view.module.scss';
+import stylesItem from '../styles/task.view.module.scss';
 
 interface IKanbanCard {
   item: ITaskResponse;
   setItems: Dispatch<SetStateAction<ITaskResponse[] | undefined>>;
+  value: string;
 }
 
-export function KanbanCard({ item, setItems }: IKanbanCard) {
-  const { register, watch, control, setFocus } = useForm<TypeTaskFormState>({
-    defaultValues: {
-      name: item.name,
-      createdAt: item.createdAt,
-      isCompleted: item.isCompleted,
-      priority: item.priority,
-    },
-  });
-  useTaskDebounce({ watch, itemId: item.id });
-
+export function KanbanCard({ item, setItems, value }: IKanbanCard) {
+  const { control, register } = useFormItem(item);
   const { deleteTask, isDeletePending } = useDeleteTask();
-
-  useEffect(() => {
-    setFocus('name');
-  }, [setFocus]);
 
   return (
     <div
       className={cn(
-        styles.card,
-        {
-          [styles.completed]: watch('isCompleted'),
-        },
+        stylesKanban.card,
+        value === EnumColums.COMPLETED ? stylesItem.completed : '',
+        value === EnumColums.OVERDUE ? stylesItem.overdue : '',
         'animation-opacity',
       )}
     >
-      <div className={styles.cardHeader}>
+      <div className={stylesKanban.cardHeader}>
         <button aria-describedby="todo-item">
-          <GripVertical className={styles.grip} />
+          <GripVertical className={stylesKanban.grip} />
         </button>
 
         <Controller
@@ -62,7 +51,7 @@ export function KanbanCard({ item, setItems }: IKanbanCard) {
         <TransparentField {...register('name')} />
       </div>
 
-      <div className={styles.cardBody}>
+      <div className={stylesKanban.cardBody}>
         <Controller
           control={control}
           name="createdAt"
@@ -91,7 +80,7 @@ export function KanbanCard({ item, setItems }: IKanbanCard) {
         />
       </div>
 
-      <div className={styles.cardActions}>
+      <div className={stylesKanban.cardActions}>
         <button
           onClick={() =>
             item.id !== 'mock'

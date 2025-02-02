@@ -14,7 +14,13 @@ export function Sidebar() {
           href="/"
           className="flex items-center gap-2.5 p-layout border-b border-r-border"
         >
-          <Image src="/logo.svg" alt="logo" width="40" height="40" />
+          <Image
+            src="/logo.svg"
+            alt="logo"
+            width="40"
+            height="40"
+            className="aspect-square"
+          />
           <span className="text-2xl font-bold relative">Muse</span>
         </Link>
         <div className="p-3 relative">

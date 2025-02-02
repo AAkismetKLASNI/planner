@@ -6,7 +6,7 @@ export const useTaskDnd = () => {
   const { updateTask } = useUpdateTask();
 
   const onDragEnd = (result: DropResult) => {
-    if (!result.destination) return;
+    if (!result.destination || result.draggableId === 'mock') return;
 
     const destinationColumnId = result.destination.droppableId;
 

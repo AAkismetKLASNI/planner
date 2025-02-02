@@ -31,12 +31,6 @@
     .row {
       @apply font-normal grid grid-cols-[1.4fr_.4fr_.4fr_.1fr] relative;
 
-      &.completed {
-        > div > span > input {
-          @apply italic line-through opacity-50;
-        }
-      }
-
       &:hover {
         @apply bg-[#1c1f1f];
       }

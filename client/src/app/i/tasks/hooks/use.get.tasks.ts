@@ -13,5 +13,7 @@ export const useGetTasks = () => {
 
   useEffect(() => setTasks(data?.data), [data?.data]);
 
+  console.log('tasks', tasks);
+
   return { tasks, setTasks };
 };
