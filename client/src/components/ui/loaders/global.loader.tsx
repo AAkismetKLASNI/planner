@@ -1,7 +1,7 @@
 'use client';
 
 import { useIsFetching, useIsMutating } from '@tanstack/react-query';
-import { Loader } from '@/components/ui/loader/loader';
+import { Loader } from '@/components/ui/loaders/loader';
 
 export function GlobalLoader() {
   const isMutating = useIsMutating();

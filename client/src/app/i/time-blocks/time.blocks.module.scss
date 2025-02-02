@@ -1,6 +1,6 @@
 .list {
   .block {
-    @apply rounded mb-3 p-4 relative flex items-center justify-between text-sm;
+    @apply rounded-lg mb-3 p-4 relative flex items-center justify-between text-sm;
 
     &:active,
     &:hover {

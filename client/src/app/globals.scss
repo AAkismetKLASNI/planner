@@ -17,19 +17,27 @@
 }
 
 body {
-  @apply text-base overflow-hidden;
+  @apply text-base overflow-hidden bg-bg;
   font-family: var(--font-zen), sans-serif;
   color: rgb(var(--foreground-rgb));
-  background-color: #0e0f0f;
   user-select: none;
+  // color: #587ddb;
+}
 
-  @media (max-width: 1200px) {
-    font-size: 16px;
-  }
+p,
+span,
+div,
+li {
+  font-size: clamp(0.875rem, 0.813rem + 0.31vw, 1.125rem);
+}
 
-  @media (max-width: 992px) {
-    font-size: 14px;
-  }
+h1 {
+  font-size: clamp(1.875rem, 1.716rem + 0.79vw, 2.66rem);
+  font-weight: bold;
+}
+
+h2 {
+  font-size: clamp(1.82rem, 1.739rem + 0.41vw, 2.22rem);
 }
 
 input.defaultCheckbox {
@@ -86,15 +94,15 @@ input:checked.defaultCheckbox::before {
   }
 }
 
+// желательно исправить отсутствие скролла и сделать так, чтобы он не сдвигал блоки
 ::-webkit-scrollbar {
-  width: 12px;
+  width: 0px;
 }
 
 ::-webkit-scrollbar-track {
-  background-color: #0e0f0f;
+  @apply bg-bg;
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #141515;
-  border-radius: 10px;
+  @apply bg-secondary rounded-lg;
 }

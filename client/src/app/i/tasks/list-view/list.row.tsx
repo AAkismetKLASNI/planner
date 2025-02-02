@@ -9,7 +9,7 @@ import { type Dispatch, type SetStateAction } from 'react';
 import { Controller } from 'react-hook-form';
 import Checkbox from '@/components/ui/checkbox';
 import { TransparentField } from '@/components/ui/fields/transperent';
-import { Loader } from '@/components/ui/loader/loader';
+import { Loader } from '@/components/ui/loaders/loader';
 import { DatePicker } from '@/components/ui/task-edit/date-picker/date-picker';
 import { SingleSelect } from '@/components/ui/task-edit/single-select';
 import type { ITaskResponse } from '@/types/task.types';

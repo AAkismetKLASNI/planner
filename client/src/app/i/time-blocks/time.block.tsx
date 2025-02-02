@@ -4,7 +4,7 @@ import { useDeleteTimeBlock } from './hooks/use.delete.time.block';
 import { useTimeBlockSortable } from './hooks/use.time.block.sortable';
 import { Edit, GripVertical, Trash } from 'lucide-react';
 import { useFormContext } from 'react-hook-form';
-import { Loader } from '@/components/ui/loader/loader';
+import { Loader } from '@/components/ui/loaders/loader';
 import {
   ITimeBlockResponse,
   TypeTimeBlockFormState,

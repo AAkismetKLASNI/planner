@@ -8,7 +8,7 @@
     min-height: 79vh;
 
     .card {
-      @apply rounded border border-border mt-5 p-4 relative bg-[#0e0f0f];
+      @apply rounded-lg border border-primary mt-5 p-4 relative bg-secondary;
 
       .cardHeader {
         @apply flex items-center mb-2;

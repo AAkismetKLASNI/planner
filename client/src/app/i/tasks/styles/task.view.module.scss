@@ -1,4 +1,8 @@
 .completed,
 .overdue {
-  @apply italic line-through opacity-50;
+  @apply italic opacity-50;
+
+  input {
+    @apply line-through;
+  }
 }

@@ -21,6 +21,12 @@ export function AddInput({
     setItems((prev) => {
       if (!prev) return;
 
+      const isExistMock = prev.some((task) => task.id === 'mock');
+
+      if (isExistMock) {
+        return prev;
+      }
+
       return [
         ...prev,
         { id: 'mock', name: '', isCompleted: false, createdAt: filterDate },

@@ -8,10 +8,10 @@
   .header,
   .parentsWrapper .row,
   .parentsWrapper .colHeading {
-    @apply rounded border-t border-border text-left w-auto whitespace-nowrap;
+    @apply rounded-lg text-left w-auto whitespace-nowrap;
 
     > div {
-      @apply border-r border-border py-2 px-4;
+      @apply py-2 px-4;
 
       &:last-child {
         @apply border-0;
@@ -21,7 +21,7 @@
 
   .parentsWrapper {
     .colHeading {
-      background-color: #141515;
+      @apply bg-secondary;
 
       > div {
         @apply font-semibold text-xl py-3;
@@ -32,7 +32,11 @@
       @apply font-normal grid grid-cols-[1.4fr_.4fr_.4fr_.1fr] relative;
 
       &:hover {
-        @apply bg-[#1c1f1f];
+        @apply bg-white/5;
+      }
+
+      &:focus {
+        @apply bg-white/5;
       }
 
       > div > span {

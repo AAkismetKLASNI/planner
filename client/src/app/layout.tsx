@@ -1,11 +1,11 @@
 import { Providers } from './providers';
 import type { Metadata } from 'next';
-import { Noto_Sans } from 'next/font/google';
+import { Geologica } from 'next/font/google';
 import { Toaster } from 'sonner';
 import { SITE_NAME } from '@/constants/seo.constants';
 import './globals.scss';
 
-const notoSans = Noto_Sans({
+const geologica = Geologica({
   subsets: ['latin', 'cyrillic'],
   display: 'swap',
   variable: '--font-noto-sans',
@@ -16,7 +16,7 @@ const notoSans = Noto_Sans({
 export const metadata: Metadata = {
   title: { default: SITE_NAME, template: `%s | ${SITE_NAME}` },
   description: 'Best one for planning from reflection-planner',
-  icons: '/logo.svg',
+  icons: '/logo2.svg',
 };
 
 export default function RootLayout({
@@ -26,7 +26,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${notoSans.className} h-screen antialiased`}>
+      <body className={`${geologica.className} h-screen antialiased`}>
         <Providers>{children}</Providers>
         <Toaster theme="dark" position="bottom-right" />
       </body>

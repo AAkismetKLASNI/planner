@@ -7,7 +7,7 @@ import {
   SortableContext,
   verticalListSortingStrategy,
 } from '@dnd-kit/sortable';
-import { Loader } from '@/components/ui/loader/loader';
+import { Loader } from '@/components/ui/loaders/loader';
 import styles from './time.blocks.module.scss';
 
 export function TimeBlockingList() {

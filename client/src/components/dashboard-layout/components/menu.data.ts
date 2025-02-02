@@ -12,7 +12,7 @@ export const MENU: IMenu[] = [
   {
     icon: LayoutDashboard,
     link: DASHBOARD_PAGES.HOME,
-    name: 'Dashboard',
+    name: 'Home',
   },
   {
     icon: SquareKanban,

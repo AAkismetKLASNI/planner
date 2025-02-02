@@ -9,7 +9,7 @@ import { useTimerActions } from './hooks/use.timer.actions';
 import { Rounds } from './rounds/rounds';
 import { Pause, Play, RefreshCcw } from 'lucide-react';
 import { Button } from '@/components/ui/buttons/button';
-import { Loader } from '@/components/ui/loader/loader';
+import { Loader } from '@/components/ui/loaders/loader';
 
 export function Pomodoro() {
   const timerState = useTimer();

@@ -11,7 +11,7 @@ import { Button } from '@/components/ui/buttons/button';
 import { Error } from '@/components/ui/error';
 import { Field } from '@/components/ui/fields/field';
 import { Heading } from '@/components/ui/heading/heading';
-import { Loader } from '@/components/ui/loader/loader';
+import { Loader } from '@/components/ui/loaders/loader';
 import { IAuthForm } from '@/types/auth.types';
 import { DASHBOARD_PAGES } from '@/config/page-url.config';
 

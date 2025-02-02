@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default function TasksPage() {
   return (
     <div>
-      <Heading title="Tasks" />
+      <Heading title="tasks" />
       <TasksView />
     </div>
   );
