@@ -16,7 +16,7 @@ const geologica = Geologica({
 export const metadata: Metadata = {
   title: { default: SITE_NAME, template: `%s | ${SITE_NAME}` },
   description: 'Best one for planning from reflection-planner',
-  icons: '/logo2.svg',
+  icons: '/logo.svg',
 };
 
 export default function RootLayout({

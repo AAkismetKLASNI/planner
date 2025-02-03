@@ -14,7 +14,7 @@ const config: Config = {
       colors: COLORS,
       spacing: {
         0.5: '0.12rem',
-        layout: '1rem',
+        layout: '1.5rem',
         'big-layout': '2.3rem',
       },
       fontSize: {

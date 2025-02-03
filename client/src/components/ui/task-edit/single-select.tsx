@@ -63,7 +63,7 @@ export function SingleSelect({
       {isShow && (
         <div
           className={cn(
-            'absolute w-full p-2.5 left-0 slide bg-sidebar z-10 shadow rounded-lg',
+            'absolute w-full p-2.5 left-0 slide bg-secondary z-10 shadow rounded-lg',
           )}
           style={{
             top: 'calc(100% + .5rem)',

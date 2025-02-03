@@ -1,11 +1,8 @@
 'use client';
 
+import { useAuth } from './hooks/use.auth';
 import { authScheme } from '@/schemes/auth.scheme';
-import { authService } from '@/services/auth.service';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useMutation } from '@tanstack/react-query';
-import { useRouter } from 'next/navigation';
-import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { Button } from '@/components/ui/buttons/button';
 import { Error } from '@/components/ui/error';
@@ -13,7 +10,6 @@ import { Field } from '@/components/ui/fields/field';
 import { Heading } from '@/components/ui/heading/heading';
 import { Loader } from '@/components/ui/loaders/loader';
 import { IAuthForm } from '@/types/auth.types';
-import { DASHBOARD_PAGES } from '@/config/page-url.config';
 
 export default function Auth() {
   const {
@@ -23,22 +19,7 @@ export default function Auth() {
     formState: { errors },
   } = useForm<IAuthForm>({ resolver: yupResolver(authScheme) });
 
-  const { push } = useRouter();
-  const [isLogin, setIsLogin] = useState(false);
-
-  //fix it later
-  const { mutate, isPending, error } = useMutation({
-    mutationKey: ['auth'],
-    mutationFn: (data: IAuthForm) =>
-      authService.main(isLogin ? 'login' : 'register', data),
-    onSuccess: async () => {
-      const { toast } = await import('sonner');
-      toast.success('Successfully login!');
-      reset();
-      push(DASHBOARD_PAGES.HOME);
-    },
-    onError: (error: string) => error,
-  });
+  const { mutate, error, isPending, setIsLogin } = useAuth(reset);
 
   const errorForm = errors.email?.message || errors.password?.message || error;
 
@@ -47,10 +28,10 @@ export default function Auth() {
   return (
     <div className="flex min-h-screen">
       <form
-        className="w-1/4 m-auto shadow bg-sidebar sidebar rounded-xl p-layout"
+        className="w-1/4 m-auto shadow bg-secondary rounded-xl p-layout"
         onSubmit={handleSubmit(onSubmit)}
       >
-        <Heading title="Auth" />
+        <Heading title="auth" />
         <div className="flex justify-between h-5">
           {(errorForm && <Error>{errorForm}</Error>) || <div />}
           {isPending && <Loader />}

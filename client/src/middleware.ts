@@ -18,7 +18,7 @@ export const middleware = (req: NextRequest, res: NextResponse) => {
   }
 
   if (!refreshToken) {
-    return NextResponse.redirect(new URL('/auth', url));
+    return NextResponse.redirect(new URL('/', url));
   }
 
   return;

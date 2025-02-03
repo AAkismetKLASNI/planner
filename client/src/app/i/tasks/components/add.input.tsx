@@ -21,10 +21,17 @@ export function AddInput({
     setItems((prev) => {
       if (!prev) return;
 
+      // fix: оптимизировать
       const isExistMock = prev.some((task) => task.id === 'mock');
 
       if (isExistMock) {
-        return prev;
+        return prev.map((task) => {
+          if (task.id === 'mock') {
+            return { ...task, createdAt: filterDate };
+          }
+
+          return task;
+        });
       }
 
       return [

@@ -29,14 +29,10 @@
     }
 
     .row {
-      @apply font-normal grid grid-cols-[1.4fr_.4fr_.4fr_.1fr] relative;
+      @apply font-normal grid grid-cols-[1.4fr_.4fr_.4fr_.1fr] relative transition-colors;
 
       &:hover {
-        @apply bg-white/5;
-      }
-
-      &:focus {
-        @apply bg-white/5;
+        @apply bg-white/10;
       }
 
       > div > span {

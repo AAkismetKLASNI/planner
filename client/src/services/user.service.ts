@@ -1,10 +1,6 @@
-import { IUser, TypeUserForm } from '@/types/auth.types';
+import type { TypeUserForm } from '@/types/auth.types';
+import { IProfileResponse } from '@/types/profile';
 import { axiosWithAuth } from '@/api/interceptors';
-
-interface IProfileResponse {
-  user: IUser;
-  statistics: [{ label: string; value: number }];
-}
 
 class UserService {
   private BASE_URL = '/user/profile';
