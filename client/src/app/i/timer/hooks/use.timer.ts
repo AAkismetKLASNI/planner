@@ -13,6 +13,10 @@ export function useTimer(): ITimerState {
   const [activeRound, setActiveRound] = useState<IPomodoroRoundResponse>();
 
   useEffect(() => {
+    setSecondsLeft(workInterval * 60);
+  }, [workInterval]);
+
+  useEffect(() => {
     let interval: NodeJS.Timeout | null = null;
 
     if (isRunning) {

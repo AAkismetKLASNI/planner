@@ -32,11 +32,16 @@ li {
 }
 
 h1 {
+  font-size: clamp(3rem, 2.784rem + 1.08vw, 4rem);
+  font-weight: 400;
+}
+
+h2 {
   font-size: clamp(1.875rem, 1.716rem + 0.79vw, 2.66rem);
   font-weight: bold;
 }
 
-h2 {
+h3 {
   font-size: clamp(1.82rem, 1.739rem + 0.41vw, 2.22rem);
   font-weight: bold;
 }

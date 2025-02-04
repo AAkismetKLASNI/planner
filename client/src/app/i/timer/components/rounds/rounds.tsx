@@ -24,7 +24,7 @@ export function Rounds({
     : false;
 
   return (
-    <div className={styles.container}>
+    <div className="flex items-center gap-2">
       <button
         className={styles.button}
         disabled={!isCanPrevRound}

@@ -25,10 +25,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${geologica.className} h-screen antialiased`}>
+    <html className="h-full" lang="en">
+      <body className={`${geologica.className} antialiased`}>
         <Providers>{children}</Providers>
-        <Toaster theme="dark" position="bottom-right" />
+        <Toaster theme="dark" position="top-center" />
       </body>
     </html>
   );

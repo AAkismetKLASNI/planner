@@ -25,16 +25,16 @@ export function TaskPlannerWidget({ statistics }: ITaskPlannerWidget) {
       {total ? (
         <>
           <div>
-            <h1>{calculatePercentTasks(total)}</h1>
+            <h2>{calculatePercentTasks(total)}</h2>
             <div>of tasks completed</div>
           </div>
           <div>
-            <h1>{calculatePercentTasks(total)}</h1>
+            <h2>{calculatePercentTasks(total)}</h2>
             <div>of tasks completed</div>
           </div>
         </>
       ) : (
-        <h2>You have not planned anything yet</h2>
+        <h3>You have not planned anything yet</h3>
       )}
       <Link
         href={DASHBOARD_PAGES.TASKS}

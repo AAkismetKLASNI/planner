@@ -1,6 +1,8 @@
 import { ITimerState } from '../timer.types';
 import { useLoadSettings } from './use.load.settings';
 import { useUpdateRound } from './use.update.round';
+import { useEffect, useRef } from 'react';
+import { number } from 'yup';
 import type { IPomodoroRoundResponse } from '@/types/pomodoro.types';
 
 type TypeUseTimerActions = ITimerState & {
@@ -13,18 +15,32 @@ export function useTimerActions({
   secondsLeft,
   rounds,
   setActiveRound,
+  isRunning,
 }: TypeUseTimerActions) {
   const { workInterval } = useLoadSettings();
   const { isUpdateRoundPending, updateRound } = useUpdateRound();
 
+  const isRunningRef = useRef(isRunning);
+  const activeRoundIdRef = useRef<string | undefined>(activeRound?.id);
+  const secondLeftRef = useRef<number | undefined>(secondsLeft);
+
+  useEffect(() => {
+    activeRoundIdRef.current = activeRound?.id;
+  }, [activeRound?.id]);
+
+  useEffect(() => {
+    secondLeftRef.current = secondsLeft;
+  }, [secondsLeft]);
+
   const pauseHandler = () => {
     setIsRunning(false);
-    if (!activeRound?.id) return;
+    isRunningRef.current = false;
+    if (!activeRoundIdRef.current) return;
 
     updateRound({
-      id: activeRound.id,
+      id: activeRoundIdRef.current,
       data: {
-        totalSeconds: secondsLeft,
+        totalSeconds: secondLeftRef.current,
         isCompleted: Math.floor(secondsLeft / 60) > workInterval,
       },
     });
@@ -32,6 +48,7 @@ export function useTimerActions({
 
   const playHandler = () => {
     setIsRunning(true);
+    isRunningRef.current = true;
   };
 
   const nextRoundHandler = () => {
@@ -60,6 +77,7 @@ export function useTimerActions({
   };
 
   return {
+    isRunningRef,
     isUpdateRoundPending,
     pauseHandler,
     playHandler,

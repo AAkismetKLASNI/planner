@@ -1,14 +1,14 @@
 'use client';
 
-import { formatTime } from './format-time';
-import { useCreateSession } from './hooks/use.create.session';
-import { useDeleteSession } from './hooks/use.delete.session';
+import { CreateTimerSession } from './components/create.timer.session';
+import { Rounds } from './components/rounds/rounds';
+import { Timer } from './components/timer';
+import { ToggleTimer } from './components/toggle.timer';
 import { useGetTodaySession } from './hooks/use.get.today.session';
 import { useTimer } from './hooks/use.timer';
 import { useTimerActions } from './hooks/use.timer.actions';
-import { Rounds } from './rounds/rounds';
-import { Pause, Play, RefreshCcw } from 'lucide-react';
-import { Button } from '@/components/ui/buttons/button';
+import { useEffect } from 'react';
+import { toast } from 'sonner';
 import { Loader } from '@/components/ui/loaders/loader';
 
 export function Pomodoro() {
@@ -19,18 +19,27 @@ export function Pomodoro() {
   const rounds = sessionReponse?.data.rounds;
   const actions = useTimerActions({ ...timerState, rounds });
 
-  const { deleteSession, isDeleteSessionPending } = useDeleteSession(() =>
-    timerState.setSecondsLeft(workInterval * 60),
-  );
-  const { createSession, isCreateSessionPending } = useCreateSession();
+  useEffect(() => {
+    return () => {
+      if (actions.isRunningRef.current) {
+        toast.warning('Timer has been stopped');
+        actions.pauseHandler();
+      }
+    };
+  }, []);
 
   return (
-    <div className="relative w-80 text-center">
+    <div className="flex flex-col justify-center items-center gap-10 mt-20">
       {!isLoading && (
-        <div className="text-7xl font-semibold">
-          {formatTime(timerState.secondsLeft)}
-        </div>
+        <Timer
+          id={sessionReponse?.data.id}
+          setIsRunning={timerState.setIsRunning}
+          setSecondsLeft={timerState.setSecondsLeft}
+          workInterval={workInterval}
+          secondsLeft={timerState.secondsLeft}
+        />
       )}
+
       {isLoading ? (
         <Loader />
       ) : sessionReponse?.data ? (
@@ -41,34 +50,15 @@ export function Pomodoro() {
             prevRoundHandler={actions.prevRoundHandler}
             activeRound={timerState.activeRound}
           />
-          <button
-            className="mt-6 opacity-80 hover:opacity-100 transition-opacity"
-            onClick={
-              timerState.isRunning ? actions.pauseHandler : actions.playHandler
-            }
-            disabled={actions.isUpdateRoundPending}
-          >
-            {timerState.isRunning ? <Pause size={30} /> : <Play size={30} />}
-          </button>
-          <button
-            onClick={() => {
-              timerState.setIsRunning(false);
-              deleteSession(sessionReponse.data.id);
-            }}
-            className="absolute top-0 right-0 opacity-40 hover:opacity-90 transition-opacity"
-            disabled={isDeleteSessionPending}
-          >
-            <RefreshCcw size={20} />
-          </button>
+          <ToggleTimer
+            isRunning={timerState.isRunning}
+            isUpdateRoundPending={actions.isUpdateRoundPending}
+            pauseHandler={actions.pauseHandler}
+            playHandler={actions.playHandler}
+          />
         </>
       ) : (
-        <Button
-          onClick={() => createSession()}
-          disabled={isCreateSessionPending}
-          className="mt-1"
-        >
-          Create session
-        </Button>
+        <CreateTimerSession />
       )}
     </div>
   );
