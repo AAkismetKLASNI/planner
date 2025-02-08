@@ -1,0 +1,8 @@
+.skeleton-avatar {
+  @apply h-12 w-12 rounded-full bg-white/20 animate-pulse;
+}
+
+.skeleton-text {
+  @apply bg-white/20 rounded-lg animate-pulse;
+  height: clamp(0.875rem, 0.813rem + 0.31vw, 1.125rem);
+}
