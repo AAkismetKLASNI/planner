@@ -3,9 +3,9 @@
 import { useCreateTimeBlock } from '../hooks/use.create.time.block';
 import { useUpdateTimeBlock } from '../hooks/use.update.time.block';
 import { COLORS } from './colors.data';
+import { CircleArrowRight, RefreshCcw } from 'lucide-react';
 import { Controller, SubmitHandler, useFormContext } from 'react-hook-form';
-import { Button } from '@/components/ui/buttons/button';
-import { Field } from '@/components/ui/fields/field';
+import { TransparentField } from '@/components/ui/fields/transperent';
 import { SingleSelect } from '@/components/ui/task-edit/single-select';
 import type { TypeTimeBlockFormState } from '@/types/time-block.types';
 
@@ -32,48 +32,47 @@ export function TimeBlocksForm() {
       id: undefined,
       name: '',
       color: COLORS[COLORS.length - 1],
-      duration: 0,
+      duration: '',
       order: 1,
     });
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="w-3/5">
-      <Field
+    <form onSubmit={handleSubmit(onSubmit)} className="flex items-center gap-4">
+      <TransparentField
         id="name"
-        label="Name"
         placeholder="Enter name"
-        extra="mb-4"
         {...register('name', { required: true })}
       />
-      <Field
+
+      <TransparentField
         id="duration"
-        label="Duration"
         placeholder="Enter duration (min)"
-        extra="mb-4"
-        isNumber
         {...register('duration', { required: true, valueAsNumber: true })}
       />
-      <div>
-        <span className="inline-block mb-1.5">Color:</span>
-        <Controller
-          control={control}
-          name="color"
-          render={({ field: { value, onChange } }) => {
-            return (
-              <SingleSelect
-                isColorSelect
-                value={value || COLORS[COLORS.length - 1]}
-                onChange={onChange}
-                data={COLORS.map((item) => ({ value: item, label: item }))}
-              />
-            );
-          }}
-        />
-      </div>
-      <Button type="submit" disabled={isPending} className="mt-6">
-        {existId ? 'Update' : 'Create'}
-      </Button>
+
+      <Controller
+        control={control}
+        name="color"
+        render={({ field: { value, onChange } }) => {
+          return (
+            <SingleSelect
+              isColorSelect
+              value={value || COLORS[COLORS.length - 1]}
+              onChange={onChange}
+              data={COLORS.map((item) => ({ value: item, label: item }))}
+            />
+          );
+        }}
+      />
+
+      <button type="submit" disabled={isPending}>
+        {existId ? (
+          <RefreshCcw color="#AABBD5" />
+        ) : (
+          <CircleArrowRight color="#AABBD5" />
+        )}
+      </button>
     </form>
   );
 }

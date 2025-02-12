@@ -1,6 +1,6 @@
-import { calcHoursLeft } from './calc-hours-left';
-import { useGetTimeBlocks } from './hooks/use.get.time.blocks';
-import { useTimeBlockDnd } from './hooks/use.time.block.dnd';
+// import { calcHoursLeft } from '../calc-hours-left';
+import { useGetTimeBlocks } from '../hooks/use.get.time.blocks';
+import { useTimeBlockDnd } from '../hooks/use.time.block.dnd';
 import { TimeBlock } from './time.block';
 import { DndContext, closestCenter } from '@dnd-kit/core';
 import {
@@ -8,7 +8,6 @@ import {
   verticalListSortingStrategy,
 } from '@dnd-kit/sortable';
 import { Loader } from '@/components/ui/loaders/loader';
-import styles from './time.blocks.module.scss';
 
 export function TimeBlockingList() {
   const { items, setItems, isLoading } = useGetTimeBlocks();
@@ -16,7 +15,7 @@ export function TimeBlockingList() {
 
   if (isLoading) return <Loader />;
 
-  const { hoursLeft } = calcHoursLeft(items);
+  // const { hoursLeft } = calcHoursLeft(items);
 
   return (
     <div>
@@ -25,7 +24,7 @@ export function TimeBlockingList() {
         collisionDetection={closestCenter}
         onDragEnd={handleDragEnd}
       >
-        <div className={styles.list}>
+        <div>
           <SortableContext
             items={items || []}
             strategy={verticalListSortingStrategy}
@@ -38,11 +37,6 @@ export function TimeBlockingList() {
           </SortableContext>
         </div>
       </DndContext>
-      <div>
-        {hoursLeft > 0
-          ? `${hoursLeft} hours out of 24 left for sleep`
-          : 'No hours left for sleep'}
-      </div>
     </div>
   );
 }

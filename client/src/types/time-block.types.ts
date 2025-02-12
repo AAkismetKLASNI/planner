@@ -3,7 +3,7 @@ import type { IBase } from './root.types';
 export interface ITimeBlockResponse extends IBase {
   name: string;
   color?: string;
-  duration: number;
+  duration: number | '';
   order: number;
 }
 
