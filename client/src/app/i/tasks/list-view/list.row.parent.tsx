@@ -1,8 +1,8 @@
 'use client';
 
-import { FILTERS } from '../colums.data';
 import { AddInput } from '../components/add.input';
 import { Tasks } from '../components/tasks';
+import { FILTERS } from '../config/colums.data';
 import { Droppable } from '@hello-pangea/dnd';
 import type { Dispatch, SetStateAction } from 'react';
 import type { ITaskResponse } from '@/types/task.types';

@@ -13,7 +13,7 @@ export function Home() {
   if (isLoading) return <Loader />;
 
   return (
-    <div className="grid grid-cols-5 gap-16 mt-8">
+    <div className="grid grid-cols-5 gap-16">
       <DateWidget />
       <TaskPlannerWidget statistics={data?.statistics} />
       <NotesWidget />

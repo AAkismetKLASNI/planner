@@ -1,6 +1,7 @@
 'use client';
 
-import { EnumColums } from '../colums.data';
+import { EnumColums } from '../config/colums.data';
+import { PRIORITY } from '../config/priority.data';
 import { useDeleteTask } from '../hooks/use.delete.task';
 import { useFormItem } from '../hooks/use.form.item';
 import cn from 'clsx';
@@ -10,8 +11,8 @@ import { Controller } from 'react-hook-form';
 import Checkbox from '@/components/ui/checkbox';
 import { TransparentField } from '@/components/ui/fields/transperent';
 import { Loader } from '@/components/ui/loaders/loader';
+import { SingleSelect } from '@/components/ui/single-select/single-select';
 import { DatePicker } from '@/components/ui/task-edit/date-picker/date-picker';
-import { SingleSelect } from '@/components/ui/task-edit/single-select';
 import type { ITaskResponse } from '@/types/task.types';
 import stylesList from '../styles/list.view.module.scss';
 import stylesItem from '../styles/task.view.module.scss';
@@ -67,10 +68,8 @@ export function ListRow({ item, setItems, value }: IListRow) {
           name="priority"
           render={({ field: { value, onChange } }) => (
             <SingleSelect
-              data={['high', 'medium', 'low'].map((item) => ({
-                value: item,
-                label: item,
-              }))}
+              isPriority={true}
+              data={PRIORITY}
               onChange={onChange}
               value={value || ''}
             />

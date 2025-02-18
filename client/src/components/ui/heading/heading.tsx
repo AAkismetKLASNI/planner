@@ -6,10 +6,10 @@ interface IHeading {
 
 export function Heading({ title }: IHeading) {
   return (
-    <div className="flex justify-between items-center mb-4">
+    <div className="flex justify-between items-center mb-12">
       <GlobalLoader />
       <h2 className="text-lg px-2 py-1 rounded-lg bg-primary font-medium text-right">
-        /{title}
+        {title}
       </h2>
     </div>
   );

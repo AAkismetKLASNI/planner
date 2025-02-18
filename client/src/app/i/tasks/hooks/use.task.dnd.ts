@@ -1,4 +1,4 @@
-import { EnumColums, FILTERS } from '../colums.data';
+import { EnumColums, FILTERS } from '../config/colums.data';
 import { useUpdateTask } from './use.update.task';
 import { DropResult } from '@hello-pangea/dnd';
 

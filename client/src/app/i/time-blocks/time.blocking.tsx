@@ -10,11 +10,9 @@ export function TimeBlocking() {
 
   return (
     <FormProvider {...methods}>
-      <div className="grid grid-cols-2 justify-start items-start gap-12">
-        <div className="flex flex-col gap-6">
-          <TimeBlocksForm />
-          <TimeBlockingList />
-        </div>
+      <div className="flex flex-col w-1/2 mx-auto gap-6">
+        <TimeBlocksForm />
+        <TimeBlockingList />
       </div>
     </FormProvider>
   );

@@ -1,6 +1,6 @@
 'use client';
 
-import { EnumColums } from '../colums.data';
+import { EnumColums } from '../config/colums.data';
 import { useDeleteTask } from '../hooks/use.delete.task';
 import { useFormItem } from '../hooks/use.form.item';
 import cn from 'clsx';
@@ -10,8 +10,8 @@ import { Controller } from 'react-hook-form';
 import Checkbox from '@/components/ui/checkbox';
 import { TransparentField } from '@/components/ui/fields/transperent';
 import { Loader } from '@/components/ui/loaders/loader';
+import { SingleSelect } from '@/components/ui/single-select/single-select';
 import { DatePicker } from '@/components/ui/task-edit/date-picker/date-picker';
-import { SingleSelect } from '@/components/ui/task-edit/single-select';
 import type { ITaskResponse } from '@/types/task.types';
 import stylesKanban from '../styles/kanban.view.module.scss';
 import stylesItem from '../styles/task.view.module.scss';

@@ -4,9 +4,11 @@ import { useCreateTimeBlock } from '../hooks/use.create.time.block';
 import { useUpdateTimeBlock } from '../hooks/use.update.time.block';
 import { COLORS } from './colors.data';
 import { CircleArrowRight, RefreshCcw } from 'lucide-react';
+import { useRef } from 'react';
 import { Controller, SubmitHandler, useFormContext } from 'react-hook-form';
 import { TransparentField } from '@/components/ui/fields/transperent';
-import { SingleSelect } from '@/components/ui/task-edit/single-select';
+import { Icon } from '@/components/ui/icon/icon';
+import { SingleSelect } from '@/components/ui/single-select/single-select';
 import type { TypeTimeBlockFormState } from '@/types/time-block.types';
 
 export function TimeBlocksForm() {
@@ -15,12 +17,16 @@ export function TimeBlocksForm() {
 
   const existId = watch('id');
 
+  const selectColorRef = useRef<string | undefined>('');
+
   const { updateTimeBlock } = useUpdateTimeBlock();
   const { createTimeBlock, isPending } = useCreateTimeBlock();
 
   const onSubmit: SubmitHandler<TypeTimeBlockFormState> = (data) => {
     const { color, id, ...rest } = data;
     const dto = { ...rest, color: color || undefined };
+
+    selectColorRef.current = color;
 
     if (id) {
       updateTimeBlock({ id, data: dto });
@@ -31,7 +37,6 @@ export function TimeBlocksForm() {
     reset({
       id: undefined,
       name: '',
-      color: COLORS[COLORS.length - 1],
       duration: '',
       order: 1,
     });
@@ -54,25 +59,23 @@ export function TimeBlocksForm() {
       <Controller
         control={control}
         name="color"
+        defaultValue={selectColorRef.current}
         render={({ field: { value, onChange } }) => {
           return (
             <SingleSelect
-              isColorSelect
-              value={value || COLORS[COLORS.length - 1]}
+              value={selectColorRef.current || value || COLORS[0].value}
               onChange={onChange}
-              data={COLORS.map((item) => ({ value: item, label: item }))}
+              data={COLORS}
             />
           );
         }}
       />
 
-      <button type="submit" disabled={isPending}>
-        {existId ? (
-          <RefreshCcw color="#AABBD5" />
-        ) : (
-          <CircleArrowRight color="#AABBD5" />
-        )}
-      </button>
+      {existId ? (
+        <Icon type="submit" disabled={isPending} Icon={RefreshCcw} />
+      ) : (
+        <Icon type="submit" disabled={isPending} Icon={CircleArrowRight} />
+      )}
     </form>
   );
 }

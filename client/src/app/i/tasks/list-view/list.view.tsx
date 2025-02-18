@@ -1,6 +1,6 @@
 'use client';
 
-import { COLUMNS, EnumColums } from '../colums.data';
+import { COLUMNS, EnumColums } from '../config/colums.data';
 import { useGetTasks } from '../hooks/use.get.tasks';
 import { useTaskDnd } from '../hooks/use.task.dnd';
 import { filterTasks } from '../utils/filter.tasks';

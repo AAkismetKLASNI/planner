@@ -1,4 +1,4 @@
-import { EnumColums, FILTERS } from '../colums.data';
+import { EnumColums, FILTERS } from '../config/colums.data';
 import dayjs from 'dayjs';
 import isSameOrAfter from 'dayjs/plugin/isSameOrAfter';
 import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';

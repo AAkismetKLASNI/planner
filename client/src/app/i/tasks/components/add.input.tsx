@@ -1,4 +1,4 @@
-import { EnumColums } from '../colums.data';
+import { EnumColums } from '../config/colums.data';
 import type { Dispatch, SetStateAction } from 'react';
 import type { ITaskResponse } from '@/types/task.types';
 
