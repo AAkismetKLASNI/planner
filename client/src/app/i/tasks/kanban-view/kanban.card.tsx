@@ -1,6 +1,7 @@
 'use client';
 
 import { EnumColums } from '../config/colums.data';
+import { PRIORITY } from '../config/priority.data';
 import { useDeleteTask } from '../hooks/use.delete.task';
 import { useFormItem } from '../hooks/use.form.item';
 import cn from 'clsx';
@@ -69,10 +70,8 @@ export function KanbanCard({ item, setItems, value }: IKanbanCard) {
           name="priority"
           render={({ field: { value, onChange } }) => (
             <SingleSelect
-              data={['high', 'medium', 'low'].map((item) => ({
-                value: item,
-                label: item,
-              }))}
+              isPriority={true}
+              data={PRIORITY}
               onChange={onChange}
               value={value || ''}
             />

@@ -26,7 +26,7 @@ export function TimeBlocksForm() {
     const { color, id, ...rest } = data;
     const dto = { ...rest, color: color || undefined };
 
-    selectColorRef.current = color;
+    // selectColorRef.current = color;
 
     if (id) {
       updateTimeBlock({ id, data: dto });
@@ -59,11 +59,11 @@ export function TimeBlocksForm() {
       <Controller
         control={control}
         name="color"
-        defaultValue={selectColorRef.current}
+        defaultValue={selectColorRef.current || COLORS[0].value}
         render={({ field: { value, onChange } }) => {
           return (
             <SingleSelect
-              value={selectColorRef.current || value || COLORS[0].value}
+              value={value || COLORS[0].value}
               onChange={onChange}
               data={COLORS}
             />
