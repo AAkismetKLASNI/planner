@@ -1,8 +1,8 @@
 import { IOption } from '@/components/ui/single-select/single-select';
 
 export const COLORS: IOption[] = [
-  { label: 'Blue', value: 'bg-[#0080FF]' },
-  { label: 'Red', value: 'bg-[#9C2B2B]' },
-  { label: 'Pink', value: 'bg-[#FF00FF]' },
-  { label: 'Beige', value: 'bg-[#FF8000]' },
+  { label: 'Blue', value: '0, 128, 255' },
+  { label: 'Red', value: '156, 43, 43' },
+  { label: 'Pink', value: '255, 0, 255' },
+  { label: 'Beige', value: '255, 128, 0' },
 ];

@@ -8,14 +8,14 @@ export interface IPriorityOption extends IOption {
 export const PRIORITY: IPriorityOption[] = [
   {
     label: 'high',
-    value: 'bg-[#c71d1c]',
+    value: '156, 43, 43',
   },
   {
     label: 'medium',
-    value: 'bg-[#dd992b]',
+    value: '255, 128, 0',
   },
   {
     label: 'low',
-    value: 'bg-[#0048ab]',
+    value: '0, 128, 255',
   },
 ];

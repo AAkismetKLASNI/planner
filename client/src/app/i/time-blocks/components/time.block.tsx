@@ -1,6 +1,6 @@
 'use client';
 
-// note: к слову, не знаю как, но для мобильных версий можно будет сделеть возможный свап влево блоков, чтобы удалить или изменить их как в ТГ с чатами
+// feat: к слову, не знаю как, но для мобильных версий можно будет сделеть возможный свап влево блоков, чтобы удалить или изменить их как в ТГ с чатами
 import { useDeleteTimeBlock } from '../hooks/use.delete.time.block';
 import { useTimeBlockSortable } from '../hooks/use.time.block.sortable';
 import { Edit, GripVertical, Trash } from 'lucide-react';
@@ -24,10 +24,12 @@ export function TimeBlock({ item }: { item: ITimeBlockResponse }) {
   return (
     <div
       ref={setNodeRef}
-      className={`${item.color} rounded-lg mb-3 px-2 py-8 relative flex items-center justify-between gap-2`}
       style={{
         ...style,
+        borderColor: `rgb(${item.color})`,
+        backgroundColor: `rgba(${item.color}, 0.2)`,
       }}
+      className={`border-l-4 backdrop-blur-lg rounded-lg mb-3 px-2 py-8 relative flex items-center justify-between gap-2`}
     >
       <i className="text-xs opacity-70 absolute top-2 left-2">
         ({item.duration} min.)

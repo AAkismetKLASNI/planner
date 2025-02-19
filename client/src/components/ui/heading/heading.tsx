@@ -1,3 +1,4 @@
+import { Badge } from '../badge/badge';
 import { GlobalLoader } from '../loaders/global.loader';
 
 interface IHeading {
@@ -8,9 +9,7 @@ export function Heading({ title }: IHeading) {
   return (
     <div className="flex justify-between items-center mb-12">
       <GlobalLoader />
-      <h2 className="text-lg px-2 py-1 rounded-lg bg-primary font-medium text-right">
-        {title}
-      </h2>
+      <Badge color="88, 125, 219">{title}</Badge>
     </div>
   );
 }
