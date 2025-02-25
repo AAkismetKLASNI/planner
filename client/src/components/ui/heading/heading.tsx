@@ -7,7 +7,7 @@ interface IHeading {
 
 export function Heading({ title }: IHeading) {
   return (
-    <div className="flex justify-between items-center mb-12">
+    <div className="hidden lg:flex justify-between items-center mb-12">
       <GlobalLoader />
       <Badge color="88, 125, 219">{title}</Badge>
     </div>

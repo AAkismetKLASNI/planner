@@ -1,9 +1,6 @@
 'use client';
 
-import { DateWidget } from './components/date.widget';
-import { NotesWidget } from './components/notes.widget';
-import { TaskPlannerWidget } from './components/task.planner.widget';
-import { TasksWidget } from './components/tasks.widget';
+import { MainWidget } from './components/main.widget';
 import { Loader } from '@/components/ui/loaders/loader';
 import { useGetProfile } from '@/hooks/use.get.profile';
 
@@ -13,11 +10,8 @@ export function Home() {
   if (isLoading) return <Loader />;
 
   return (
-    <div className="grid grid-cols-5 gap-16">
-      <DateWidget />
-      <TaskPlannerWidget statistics={data?.statistics} />
-      <NotesWidget />
-      <TasksWidget statistics={data?.statistics} />
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-2">
+      <MainWidget firstTask={data?.widgets?.firstTask} />
     </div>
   );
 }

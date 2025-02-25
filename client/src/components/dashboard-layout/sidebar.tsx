@@ -1,18 +1,16 @@
 'use client';
 
-import { LogoutButton } from './components/logout.button';
 import { MENU } from './components/menu.data';
 import { MenuItem } from './components/menu.item';
 import { Profile } from './components/profile/profile';
 
 export function Sidebar() {
   return (
-    <aside className="m-4 bg-secondary flex flex-col gap-2 rounded-lg">
+    <aside className="bg-secondary bg-opacity-20 flex flex-col gap-2 rounded-lg lg:m-4">
       <Profile />
 
-      <div className="p-3 relative">
-        <LogoutButton />
-        <ul className="mt-6">
+      <div className="lg:py-2 lg:p-3 relative">
+        <ul className="grid grid-cols-5 lg:block lg:mt-6">
           {MENU.map((item) => (
             <MenuItem item={item} key={item.name} />
           ))}

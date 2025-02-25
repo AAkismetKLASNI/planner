@@ -7,7 +7,7 @@ export function Profile() {
   const { data, isLoading } = useGetProfile();
 
   return (
-    <div className="flex items-center flex-col gap-4 p-layout h-44">
+    <div className="hidden lg:flex items-center flex-col gap-4 p-layout h-44">
       {isLoading ? (
         <>
           <div className={styles['skeleton-avatar']}></div>

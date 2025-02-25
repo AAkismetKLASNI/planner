@@ -2,6 +2,7 @@ import type { LucideIcon } from 'lucide-react';
 import { ButtonHTMLAttributes } from 'react';
 
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
+  className: string;
   Icon: LucideIcon;
   size?: string;
   color?: string;
@@ -15,6 +16,7 @@ export function Icon({
   color,
   type,
   extra,
+  className,
   ...props
 }: Props) {
   return (
@@ -22,7 +24,7 @@ export function Icon({
       <Icon
         size={size}
         color={color}
-        className="opacity-30 hover:opacity-100 transition-opacity"
+        className={`opacity-30 hover:opacity-100 transition-opacity ${className}`}
       />
     </button>
   );

@@ -73,4 +73,10 @@ export class TaskService {
       },
     });
   }
+
+  getFirstTask(userId: string) {
+    return this.prisma.task.findFirst({
+      where: { userId, isCompleted: false },
+    });
+  }
 }

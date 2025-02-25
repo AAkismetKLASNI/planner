@@ -43,17 +43,22 @@ export class UserService {
 
     const weekTasks = await this.taskService.getWeekTasks(id);
 
+    const firstTask = await this.taskService.getFirstTask(id);
+
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { password, ...user } = profile;
 
     return {
       user,
-      statistics: [
-        { label: 'Total', value: totalTasks },
-        { label: 'Completed tasks', value: completedTasks.length },
-        { label: 'Today tasks', value: todayTasks.length },
-        { label: 'Week tasks', value: weekTasks.length },
-      ],
+      widgets: {
+        firstTask,
+        statistics: [
+          { label: 'Total', value: totalTasks },
+          { label: 'Completed tasks', value: completedTasks.length },
+          { label: 'Today tasks', value: todayTasks.length },
+          { label: 'Week tasks', value: weekTasks.length },
+        ],
+      },
     };
   }
 
