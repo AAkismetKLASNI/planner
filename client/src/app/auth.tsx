@@ -28,7 +28,7 @@ export default function Auth() {
   return (
     <div className="flex min-h-screen">
       <form
-        className="w-1/4 m-auto shadow bg-secondary rounded-xl p-layout"
+        className="m-auto shadow bg-secondary rounded-xl p-layout"
         onSubmit={handleSubmit(onSubmit)}
       >
         <Heading title="auth" />

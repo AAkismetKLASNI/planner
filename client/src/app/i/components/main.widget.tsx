@@ -23,6 +23,7 @@ export function MainWidget({
         className="block space-y-2 bg-bg/80 p-2 rounded-md col-span-2 cursor-pointer transition-transform hover:scale-95 group"
       >
         <div className="flex justify-between">
+          {/* node: доделать датирование */}
           <code className="text-white/20 transition-colors">Today</code>
           <code className="text-white/20 transition-colors">
             {firstTask?.priority || 'None'}
