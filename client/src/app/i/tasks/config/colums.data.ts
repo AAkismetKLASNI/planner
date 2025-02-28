@@ -16,7 +16,7 @@ export enum EnumColums {
   'COMPLETED' = 'completed',
 }
 
-export const FILTERS: Record<string, Dayjs> = {
+export const FILTERS = {
   overdue: dayjs().subtract(1, 'day').endOf('day'),
   today: dayjs().startOf('day'),
   tomorrow: dayjs().add(1, 'day').startOf('day'),

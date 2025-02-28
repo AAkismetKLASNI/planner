@@ -75,8 +75,16 @@ export class TaskService {
   }
 
   getFirstTask(userId: string) {
+    let date = new Date();
+    date.setHours(0, 0, 0, 0);
+    date.toString();
+
     return this.prisma.task.findFirst({
-      where: { userId, isCompleted: false },
+      where: {
+        userId,
+        isCompleted: false,
+        createdAt: { gte: date },
+      },
     });
   }
 }

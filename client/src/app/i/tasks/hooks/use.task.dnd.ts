@@ -8,7 +8,7 @@ export const useTaskDnd = () => {
   const onDragEnd = (result: DropResult) => {
     if (!result.destination || result.draggableId === 'mock') return;
 
-    const destinationColumnId = result.destination.droppableId;
+    const destinationColumnId = result.destination.droppableId as EnumColums;
 
     if (destinationColumnId === result.source.droppableId) return;
 

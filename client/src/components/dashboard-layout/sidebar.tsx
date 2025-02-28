@@ -6,7 +6,7 @@ import { Profile } from './components/profile/profile';
 
 export function Sidebar() {
   return (
-    <aside className="bg-black/20 backdrop-blur-md flex flex-col gap-2 rounded-lg lg:m-4">
+    <aside className="bg-secondary/40 backdrop-blur-md flex flex-col gap-2 rounded-lg lg:m-4">
       <Profile />
 
       <div className="lg:py-2 lg:p-3 relative">
